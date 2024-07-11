@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int a[5]={1,2,3,4,5};
+   cout<<"completely intialized int array a"<<endl;         we can use forI 
+   for(int x:a)//read as for x in array
+   cout<<x<<endl;
+   int b[6]={1,2,5};
+   cout<<"parallel intialized int array b"<<endl;
+   for(int y:b)//show that each will work according to size and not according
+   cout<<y<<endl;
+   float c[6]={1.2,2.4,3.6,48.54,99.65,54.88};
+   cout<<"completely intialized float array c"<<endl;
+   for(int z:c)// show
+   cout<<z<<endl;
+   cout<<endl;
+
+
+    return 0;
+}
+
