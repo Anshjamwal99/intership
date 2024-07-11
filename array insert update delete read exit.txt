@@ -1,0 +1,146 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 100;
+int arr[MAX_SIZE];
+int currentSize = 0;
+
+// Function prototypes
+void insertElement();
+void updateElement();
+void deleteElement();
+void readArray();
+void exitProgram();
+
+int main() {
+    int choice;
+
+    while (true) {
+        // Display menu
+        cout << "\nArray Operations Menu:" << endl;
+        cout << "1. Insert Element" << endl;
+        cout << "2. Update Element" << endl;
+        cout << "3. Delete Element" << endl;
+        cout << "4. Read Array" << endl;
+        cout << "5. Exit Program" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                insertElement();
+                break;
+            case 2:
+                updateElement();
+                break;
+            case 3:
+                deleteElement();
+                break;
+            case 4:
+                readArray();
+                break;
+            case 5:
+                exitProgram();
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
+                break;
+        }
+    }
+
+    return 0;
+}
+
+void insertElement() {
+    if (currentSize >= MAX_SIZE) {
+        cout << "Array is full. Cannot insert more elements." << endl;
+        return;
+    }
+
+    int element, position;
+    cout << "Enter the element to insert: ";
+    cin >> element;
+    cout << "Enter the position to insert (0-" << currentSize << "): ";
+    cin >> position;
+
+    if (position < 0 || position > currentSize) {
+        cout << "Invalid position. Insertion failed." << endl;
+        return;
+    }
+
+    // Shift elements to the right to make space for the new element
+    for (int i = currentSize; i > position; --i) {
+        arr[i] = arr[i - 1];
+    }
+
+    arr[position] = element;
+    ++currentSize;
+
+    cout << "Element inserted successfully." << endl;
+}
+
+void updateElement() {
+    if (currentSize == 0) {
+        cout << "Array is empty. Cannot update elements." << endl;
+        return;
+    }
+
+    int element, position;
+    cout << "Enter the new element value: ";
+    cin >> element;
+    cout << "Enter the position to update (0-" << currentSize - 1 << "): ";
+    cin >> position;
+
+    if (position < 0 || position >= currentSize) {
+        cout << "Invalid position. Update failed." << endl;
+        return;
+    }
+
+    arr[position] = element;
+
+    cout << "Element updated successfully." << endl;
+}
+
+void deleteElement() {
+    if (currentSize == 0) {
+        cout << "Array is empty. Cannot delete elements." << endl;
+        return;
+    }
+
+    int position;
+    cout << "Enter the position to delete (0-" << currentSize - 1 << "): ";
+    cin >> position;
+
+    if (position < 0 || position >= currentSize) {
+        cout << "Invalid position. Deletion failed." << endl;
+        return;
+    }
+
+    // Shift elements to the left to fill the gap
+    for (int i = position; i < currentSize - 1; ++i) {
+        arr[i] = arr[i + 1];
+    }
+
+    --currentSize;
+
+    cout << "Element deleted successfully." << endl;
+}
+
+void readArray() {
+    if (currentSize == 0) {
+        cout << "Array is empty." << endl;
+        return;
+    }
+
+    cout << "Array elements:" << endl;
+    for (int i = 0; i < currentSize; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void exitProgram() {
+    cout << "Exiting the program. Goodbye!" << endl;
+    exit(0);
+}
+
