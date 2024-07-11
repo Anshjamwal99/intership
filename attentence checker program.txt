@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+
+int main()
+{  
+    int classes,attended,percentage;
+    
+    cout<<"total no of classes attended & classes attended"<<endl;
+    cin>>classes>>attended;
+    percentage=((attended/classes)*100);
+    cout<<"percentage is "<<percentage<<endl;
+    if(percentage<75)
+    cout<<"not allowed in "<<endl;
+    else if (percentage>=75)
+    cout<<"allowed"<<endl;
+    else
+    cout<<"no";
+return 0;
+
+} 
+
