@@ -1,0 +1,19 @@
+#include <iostream>
+#include<array> 
+#include<vector>
+using namespace std;
+int main()
+{
+ vector<int> v;
+ cout<<"capacity"<<v.capacity()<<endl;
+  cout<<v.capacity()<<endl;
+ cout<<"before clear size"<<v.size()<<endl;
+ v.push_back(10);
+ cout<<v.capacity()<<endl;
+ cout<<"before clear size"<<v.size()<<endl;
+ v.clear();
+ for (int i:v){
+     cout<<i<<endl;
+ }
+ return 0;
+}
