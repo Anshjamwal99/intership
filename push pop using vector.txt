@@ -1,0 +1,21 @@
+#include <iostream>
+#include<array> 
+#include<vector>
+using namespace std;
+int main(){
+ 
+   
+    vector<int> a={1,8,4,6,2} ;
+    cout<<a.capacity()<<endl;
+    cout<<a.data()<<endl;
+    cout<<a.front()<<endl;
+    cout<<a.back()<<endl;
+    a.push_back(10);
+    a.push_back(9);
+    for (int i:a){
+        cout<<i<<endl;
+    }
+return 0;
+}
+     
+ }
