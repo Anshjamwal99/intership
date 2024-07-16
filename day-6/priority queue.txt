@@ -1,0 +1,41 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+#include<queue>
+#include<vector>
+#include<stack> 
+using namespace std;
+
+int main()
+{
+   priority_queue<int> max;
+   
+   priority_queue<int,vector<int>,greater<int>>mini ;
+    max.push(2);
+    max.push(3);
+    max.push(4);
+    cout<<"size"<<max.size()<<endl;
+    int n=max.size();
+    for(int i=0;i<n;i++){
+    cout<<"max top"<<max.top()<<endl;
+      max.pop();
+    
+    }cout<<endl;
+    mini.push(5);
+    mini.push(6);
+    mini.push(7);
+    mini.push(3);
+    int m=mini.size();
+    for(int i=0;i<n;i++){
+         cout<<mini.top()<<endl;
+         mini.pop();
+    }
+     cout<<endl;
+    return 0;
+}
