@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[] = {5, 9, 3, 6, 7, 12, 15};  
+    int size = sizeof(arr) / sizeof(arr[0]);  
+
+    int countMultiplesOf3 = 0;
+
+    
+    for (int i = 0; i < size; ++i) {
+        
+        if (arr[i] % 3 == 0) {
+            countMultiplesOf3++;
+        }
+    }
+
+    cout << "Count of multiples of 3 in the array: " << countMultiplesOf3 << endl;
+
+    return 0;
+}
