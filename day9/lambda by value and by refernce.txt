@@ -1,0 +1,22 @@
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int x=10;
+int y=20;
+
+auto add=[=](int a){
+    return x+y+a;
+};
+cout<<"sum"<<add(5)<<endl;
+auto addbyref=[&x,&y](int a){
+    x=30;
+    return x+y+a;
+};
+cout<<"sum by reference"<<addbyref(5)<<endl;
+cout<<"x afte modification"<<x<<endl;
+    return 0;
+}
