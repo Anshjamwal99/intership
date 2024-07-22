@@ -1,0 +1,119 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Function prototypes
+void mergeSort(vector<int>& arr);
+void merge(vector<int>& arr, int left, int middle, int right);
+void selectionSort(vector<int>& arr);
+void bubbleSort(vector<int>& arr);
+void insertionSort(vector<int>& arr);
+void printArray(const vector<int>& arr);
+void menu();
+
+int main() {
+    vector<int> arr = {12, 11, 13, 5, 6, 7};
+
+    int choice;
+    do {
+        menu();
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                mergeSort(arr);
+                cout << "Merge sort result: ";
+                printArray(arr);
+                break;
+            case 2:
+                selectionSort(arr);
+                cout << "Selection sort result: ";
+                printArray(arr);
+                break;
+            case 3:
+                bubbleSort(arr);
+                cout << "Bubble sort result: ";
+                printArray(arr);
+                break;
+            case 4:
+                insertionSort(arr);
+                cout << "Insertion sort result: ";
+                printArray(arr);
+                break;
+            case 5:
+                cout << "Exiting program." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number from 1 to 5." << endl;
+        }
+    } while(choice != 5);
+
+    return 0;
+}
+
+void mergeSort(vector<int>& arr) {
+    // Implement merge sort
+    // Implementation omitted for brevity
+}
+
+void merge(vector<int>& arr, int left, int middle, int right) {
+    // Implement merge function for merge sort
+    // Implementation omitted for brevity
+}
+
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; ++i) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (minIndex != i) {
+            swap(arr[i], arr[minIndex]);
+        }
+    }
+}
+
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - i - 1; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+void insertionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; ++i) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void printArray(const vector<int>& arr) {
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+void menu() {
+    cout << "\nChoose a sorting algorithm:\n"
+         << "1. Merge Sort\n"
+         << "2. Selection Sort\n"
+         << "3. Bubble Sort\n"
+         << "4. Insertion Sort\n"
+         << "5. Exit\n"
+         << "Enter your choice: ";
+}
