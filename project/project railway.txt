@@ -1,0 +1,135 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
+
+using namespace std;
+
+// Structures for holding data
+struct Train {
+    string trainNumber;
+    string trainName;
+    string sourceStation;
+    string destinationStation;
+    int availableSeats;
+    vector<string> schedule;
+};
+
+struct Ticket {
+    string passengerName;
+    string trainNumber;
+    int seatNumber;
+};
+
+// Global data storage
+map<string, Train> trains;
+vector<Ticket> tickets;
+
+// Function prototypes
+void addTrain();
+void bookTicket();
+void displayTrainSchedule(const Train& train);
+
+int main() {
+    int choice;
+    do {
+        cout << "===== Railway Management System =====" << endl;
+        cout << "1. Add Train" << endl;
+        cout << "2. Book Ticket" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addTrain();
+                break;
+            case 2:
+                bookTicket();
+                break;
+            case 3:
+                cout << "Exiting program..." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please enter again." << endl;
+        }
+    } while (choice != 3);
+
+    return 0;
+}
+
+void addTrain() {
+    Train newTrain;
+    cout << "Enter Train Number: ";
+    cin >> newTrain.trainNumber;
+    cout << "Enter Train Name: ";
+    cin.ignore();
+    getline(cin, newTrain.trainName);
+    cout << "Enter Source Station: ";
+    getline(cin, newTrain.sourceStation);
+    cout << "Enter Destination Station: ";
+    getline(cin, newTrain.destinationStation);
+    cout << "Enter Available Seats: ";
+    cin >> newTrain.availableSeats;
+
+    // Add schedule
+    int numStops;
+    cout << "Enter number of stops in the schedule: ";
+    cin >> numStops;
+    cin.ignore();
+    for (int i = 0; i < numStops; ++i) {
+        string stop;
+        cout << "Enter stop " << i + 1 << ": ";
+        getline(cin, stop);
+        newTrain.schedule.push_back(stop);
+    }
+
+    // Add train to the map
+    trains[newTrain.trainNumber] = newTrain;
+    cout << "Train added successfully!" << endl;
+}
+
+void bookTicket() {
+    string trainNumber;
+    cout << "Enter Train Number: ";
+    cin >> trainNumber;
+
+    // Check if train exists
+    if (trains.find(trainNumber) == trains.end()) {
+        cout << "Train with number " << trainNumber << " not found." << endl;
+        return;
+    }
+
+    Train& selectedTrain = trains[trainNumber];
+    if (selectedTrain.availableSeats > 0) {
+        Ticket newTicket;
+        cout << "Enter Passenger Name: ";
+        cin.ignore();
+        getline(cin, newTicket.passengerName);
+        newTicket.trainNumber = trainNumber;
+        newTicket.seatNumber = selectedTrain.availableSeats; // Simplified seat allocation
+
+        // Decrease available seats
+        selectedTrain.availableSeats--;
+
+        // Add ticket to the tickets vector
+        tickets.push_back(newTicket);
+
+        cout << "Ticket booked successfully!" << endl;
+    } else {
+        cout << "Sorry, no available seats on this train." << endl;
+    }
+}
+
+void displayTrainSchedule(const Train& train) {
+    cout << "Train Number: " << train.trainNumber << endl;
+    cout << "Train Name: " << train.trainName << endl;
+    cout << "Source Station: " << train.sourceStation << endl;
+    cout << "Destination Station: " << train.destinationStation << endl;
+    cout << "Schedule:" << endl;
+    for (const auto& stop : train.schedule) {
+        cout << "- " << stop << endl;
+    }
+    cout << "Available Seats: " << train.availableSeats << endl;
+    cout << endl;
+}
