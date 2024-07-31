@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+
+using namespace std;
+
+string generateOTP(int length) {
+    const string chars = "abcdefghijklmno"; // Characters from 'a' to 'o'
+    const string nums = "12345678910"; // Single digits and "10"
+    string otp;
+    
+    srand(static_cast<unsigned int>(time(0))); // Seed for randomness
+
+    for (int i = 0; i < length; ++i) {
+        int randChoice = rand() % 3; // Randomly choose between 0, 1, and 2
+        
+        if (randChoice == 0 && !chars.empty()) {
+            // Append a random character from chars
+            otp += chars[rand() % chars.size()];
+        } else if (randChoice == 1 && !nums.empty()) {
+            // Append a random number from nums (single digits)
+            otp += nums[rand() % nums.size()];
+        } else if (randChoice == 2) {
+            // Append "10" for the number 10
+            otp += "10";
+        }
+    }
+    
+    return otp;
+}
+
+int main() {
+    int otpLength;
+    cout << "Enter the length of the OTP: ";
+    cin >> otpLength;
+    
+    if (otpLength <= 0) {
+        cerr << "Length should be greater than 0." << endl;
+        return 1;
+    }
+    
+    string otp = generateOTP(otpLength);
+    cout << "Generated OTP: " << otp << endl;
+
+    return 0;
+}
